@@ -14,18 +14,34 @@
     box-sizing: border-box;
 }
 
-@view-transition {
-  navigation: auto; /* Active les transitions douces entre les pages HTML */
+/* L'état normal de la page */
+/* --- Styles de base pour la transition globale --- */
+body {
+    /* Au chargement, la page est invisible et légèrement décalée vers le bas */
+    opacity: 0;
+    transform: translateY(10px);
+    
+    /* On définit une transition douce sur l'opacité et la position */
+    transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
+    
+    /* Petit correctif pour éviter les barres de défilement pendant l'animation */
+    overflow-x: hidden;
 }
 
-/* 2. On personnalise la vitesse de l'ancienne page qui s'en va (capture sortante) */
-::view-transition-old(root) {
-  animation: 0.8s ease-in-out both fade-out; /* 0.8s au lieu de la vitesse par défaut */
+/* --- ÉTATE 1 : L'entrée douce (Fade In) --- */
+/* Cette classe sera ajoutée par JavaScript dès que la page est chargée */
+body.loaded {
+    opacity: 1;
+    transform: translateY(0); /* La page reprend sa place */
 }
 
-/* 3. On personnalise la vitesse de la nouvelle page qui arrive (capture entrante) */
-::view-transition-new(root) {
-  animation: 0.8s ease-in-out both fade-in; /* On aligne sur 0.8s pour un fondu parfait */
+/* --- ÉTAT 2 : La sortie douce (Fade Out) --- */
+/* Cette classe est ajoutée temporairement juste avant de quitter la page */
+body.fade-out {
+    opacity: 0;
+    transform: translateY(-10px); /* Léger effet de glissement vers le haut */
+    /* On force la transition même si 'loaded' est présente */
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
 }
 
 body {

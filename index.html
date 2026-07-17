@@ -87,8 +87,8 @@
                 <div class="icon-wrapper">
                     <i class="fa-solid fa-book"></i>
                 </div>
-                <h2>Le Programme</h2>
-                <p>À découvrir</p>
+                <h2>Réponse avant le</h2>
+                <p>31 Août 2026</p>
             </div>
 
         </div>
@@ -101,6 +101,44 @@
         </div>
     </footer>
 
+<script>
+    // --- PARTIE 1 : Gérer l'arrivée douce (Fade In) ---
+    // Dès que le contenu HTML est chargé, on active la transition
+    window.addEventListener('DOMContentLoaded', () => {
+        // Un très léger délai (50ms) assure que le navigateur a bien appliqué opacity: 0 initialement
+        setTimeout(() => {
+            document.body.classList.add('loaded');
+        }, 50);
+    });
+
+    // --- PARTIE 2 : Gérer le départ doux (Fade Out) ---
+    // On écoute tous les clics sur la page
+    document.addEventListener('click', (e) => {
+        // On cherche si l'élément cliqué est un lien <a> ou est à l'intérieur d'un lien <a>
+        const link = e.target.closest('a');
+
+        // Si ce n'est pas un lien, ou s'il n'a pas d'URL, on ne fait rien
+        if (!link || !link.href) return;
+
+        // Configuration pour valider que c'est un lien interne vers notre site (.html)
+        const isInternal = link.hostname === window.location.hostname;
+        const isHtmlPage = link.pathname.endsWith('.html') || link.pathname === '/'; // Gère aussi la racine '/'
+        const isNotSamePage = link.hash === ''; // Ignore les liens d'ancrage (#section)
+
+        if (isInternal && isHtmlPage && isNotSamePage) {
+            e.preventDefault(); // On bloque la redirection immédiate
+            const targetUrl = link.href;
+
+            // On ajoute la classe qui fait disparaître la page
+            document.body.classList.add('fade-out');
+
+            // On attend la fin de l'animation de sortie (coordonnée avec le CSS : 0.5s)
+            setTimeout(() => {
+                window.location.href = targetUrl; // Redirection vers la nouvelle page
+            }, 500); // 500ms = 0.5s
+        }
+    });
+</script>
 </body>
 
 </html>

@@ -209,6 +209,7 @@ footer {
     left: 20vh;
     margin-top: 15px;
     font-size: 1.2rem;
+    z-index: 1;
 }
 
 .icon2 {
@@ -217,6 +218,7 @@ footer {
     left: 30vh;
     margin-top: 15px;
     font-size: 1.2rem;
+    z-index: 1;
     transform: rotate(120deg);
 }
 
@@ -227,6 +229,7 @@ footer {
     margin-top: 15px;
     font-size: 1.2rem;
     transform: rotate(220deg);
+    z-index: 1;
 }
 
 .icon4 {
@@ -236,6 +239,7 @@ footer {
     margin-top: 15px;
     font-size: 1.2rem;
     transform: rotate(260deg);
+    z-index: 1;
 }
 /* Zone pour afficher vos dalles au milieu en arrière-plan */
 .tiles-background {
@@ -311,6 +315,40 @@ footer {
 }
 
 /* --- Page RSVP --- */
+
+.form-group {
+    margin-bottom: 35px; /* Espace généreux entre les champs */
+    padding-bottom: 25px; /* Espace avant la ligne de séparation */
+    border-bottom: 1px dashed rgba(176, 125, 77, 0.25); /* Ligne pointillée fine et élégante (couleur dorée/brune) */
+}
+
+
+.radio-label, .checkbox-label {
+    display: inline-flex;
+    align-items: center; /* Aligne verticalement le bouton et le texte sur le même axe */
+    gap: 10px;           /* Crée un espace propre de 10px entre le bouton et le texte */
+    margin-right: 20px;  /* Espace à droite pour ne pas coller l'option suivante */
+    margin-bottom: 10px; /* Espace en dessous si les options passent à la ligne */
+    cursor: pointer;     /* Change le curseur en main au survol pour une meilleure UX */
+}
+
+/* On s'assure que le bouton garde sa taille d'origine et ne s'écrase pas */
+.radio-label input[type="radio"],
+.checkbox-label input[type="checkbox"] {
+    margin: 0;         /* Supprime les marges par défaut du navigateur */
+    flex-shrink: 0;    /* Empêche le bouton de se déformer si le texte est long */
+    width: 18px;       /* Optionnel : ajuste légèrement la taille pour une meilleure lisibilité */
+    height: 18px;
+}
+
+/* Optionnel : aligner toute la liste des checkboxes ou radios en ligne ou en colonne propre */
+.radio-group, .checkbox-list {
+    display: flex;
+    flex-wrap: wrap;   /* Permet de passer à la ligne proprement sur les écrans de téléphones */
+    gap: 15px;         /* Espace global entre les différents choix */
+    margin-top: 8px;
+}
+
 .rsvp-section {
     flex: 1;
     display: flex;
@@ -445,4 +483,101 @@ footer {
     .rsvp-title {
         font-size: 2.5rem;
     }
+}
+
+/* --- PAGE FAQ --- */
+
+.faq-container {
+    max-width: 800px;
+    margin: 60px auto;
+    padding: 0 20px;
+    z-index: 2; /* On s'assure que le contenu FAQ est au-dessus des dalles de fond */
+}
+
+.faq-subtitle {
+    text-align: center;
+    font-style: italic;
+    opacity: 0.8;
+    margin-bottom: 40px;
+}
+
+.faq-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Équivalent de l'aération de notre formulaire */
+}
+
+/* Structure de chaque ligne de FAQ */
+.faq-item {
+    background-color: #fdf8f4; /* Votre couleur crème */
+    border: 1px solid rgba(176, 125, 77, 0.2);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+/* Le bouton de la question */
+.faq-question {
+    width: 100%;
+    background: none;
+    border: none;
+    outline: none;
+    padding: 20px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: left;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-color);
+    cursor: pointer;
+    font-family: inherit;
+}
+
+/* La petite flèche */
+.faq-question .arrow {
+    transition: transform 0.3s ease;
+    color: #b07d4d; /* Votre touche dorée/brune */
+    margin-left: 15px;
+}
+
+/* Le bloc de la réponse (caché par défaut) */
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out, padding 0.3s ease;
+    padding: 0 25px;
+    opacity: 0;
+    border-top: 1px transparent solid;
+}
+
+.faq-answer p, .faq-answer ul {
+    margin: 0;
+    padding-bottom: 20px;
+    line-height: 1.6;
+    opacity: 0.9;
+}
+
+.faq-answer ul {
+    padding-left: 20px;
+}
+
+/* --- ÉTATS ACTIFS (Quand on clique) --- */
+
+.faq-item.active {
+    box-shadow: 0 4px 15px rgba(176, 125, 77, 0.1);
+    border-color: rgba(176, 125, 77, 0.4);
+}
+
+/* La flèche tourne à 180° */
+.faq-item.active .arrow {
+    transform: rotate(180deg);
+}
+
+/* La réponse se déploie */
+.faq-item.active .faq-answer {
+    max-height: 300px; /* Hauteur max de sécurité pour l'animation */
+    padding-top: 15px;
+    opacity: 1;
+    border-top: 1px dashed rgba(176, 125, 77, 0.15);
 }

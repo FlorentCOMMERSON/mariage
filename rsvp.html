@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Torypo - Notre Mariage - reponse</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Barre de Navigation -->
+    <header>
+        <nav class="navbar">
+            <a href="index.html" class="nav-link ">Accueil</a>
+            <a href="rsvp.html" class="nav-link active">Votre réponse</a>
+            <a href="faq.html" class="nav-link">FAQ</a>
+        </nav>
+    </header>
+     <div class="icon">
+        <img src="images/meeples.png" alt="Meeple" style="width: 5vw; opacity: 0.8;">
+    </div>
+    <div class="icon2">
+        <img src="images/leaf1.png" alt="une feuille" style="width: 4vw; opacity: 0.8;">
+    </div>
+
+    <div class="icon3">
+        <img src="images/leaf2.png" alt="une feuille" style="width: 4vw; opacity: 0.8;">
+    </div>
+
+    <div class="icon4">
+        <img src="images/leaf3.png" alt="une feuille" style="width: 4vw; opacity: 0.8;">
+    </div>
+
+    <!-- Section Principale RSVP -->
+    <main class="rsvp-section">
+        <div class="rsvp-book-container">
+            
+            <!-- Le livre ouvert en arrière-plan -->
+            <img src="images/livre.png" alt="Livre d'aventure" class="book-background">
+            
+            <!-- Le formulaire superposé sur les pages du livre -->
+            <div class="book-content-overlay">
+                
+                <h1 class="rsvp-title">Confirmez votre présence</h1>
+                <p class="rsvp-subtitle">Écrivez la suite de l'histoire avec nous...</p>
+
+                <!-- Formulaire connecté à FormSubmit -->
+                <form action="https://formsubmit.co/VOTRE_EMAIL@GMAIL.COM" method="POST" class="rsvp-form">
+                    
+                    <!-- Configuration FormSubmit (Pas de captcha pour vos invités + page de retour) -->
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_next" value="https://votrepseudo.github.io/index.html">
+                    <input type="hidden" name="_subject" value="✨ Nouvelle réponse RSVP Mariage !">
+
+                    <div class="form-group">
+                        <label for="fullname">Nom & Prénom</label>
+                        <input type="text" id="fullname" name="Nom Complet" placeholder="Ex: Jean Dupont" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="presence">Serez-vous des nôtres ?</label>
+                        <select id="presence" name="Présence" required>
+                            <option value="" disabled selected>Sélectionnez votre réponse...</option>
+                            <option value="Oui">Oui, avec joie ! 🎉</option>
+                            <option value="Non">Malheureusement non 😢</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="guests">Nombre d'accompagnateurs (Optionnel)</label>
+                        <input type="number" id="guests" name="Nombre d'invités" min="0" max="10" value="0">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Allergies, régimes spécifiques ou un petit mot ?</label>
+                        <textarea id="message" name="Message / Régime" rows="3" placeholder="Une préférence alimentaire ? Un mot doux ?"></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-submit">
+                        <i class="fa-solid fa-feather"></i> Signer le registre
+                    </button>
+
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <!-- Pied de page -->
+    <footer>
+        <div class="footer-content">
+            <p>Claire & Julien — 2026</p>
+        </div>
+    </footer>
+
+</body>
+</html>

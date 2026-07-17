@@ -1,0 +1,432 @@
+/* --- Variables de couleur & Reset --- */
+:root {
+    --bg-color: #f4eae1;       /* Fond crème/vintage */
+    --text-color: #4a2e1b;     /* Brun foncé pour les textes */
+    --accent-color: #b07d4d;   /* Doré/marron clair pour les bordures/boutons */
+    --btn-bg: #fdf8f4;         /* Fond des boutons clair */
+    --font-title: 'Great Vibes', cursive;
+    --font-text: 'Playfair Display', serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@view-transition {
+  navigation: auto; /* Active les transitions douces entre les pages HTML */
+}
+
+/* 2. On personnalise la vitesse de l'ancienne page qui s'en va (capture sortante) */
+::view-transition-old(root) {
+  animation: 0.8s ease-in-out both fade-out; /* 0.8s au lieu de la vitesse par défaut */
+}
+
+/* 3. On personnalise la vitesse de la nouvelle page qui arrive (capture entrante) */
+::view-transition-new(root) {
+  animation: 0.8s ease-in-out both fade-in; /* On aligne sur 0.8s pour un fondu parfait */
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font-text);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    /* Optionnel : vous pourrez ajouter ici un léger grain ou dégradé pour imiter le fond texturé de votre maquette */
+}
+
+/* --- Navigation --- */
+header {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    padding: 30px 8%;
+}
+
+.navbar {
+    display: flex;
+    gap: 30px;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: var(--text-color);
+    font-size: 1.1rem;
+    transition: opacity 0.3s ease;
+}
+
+.nav-link:hover, .nav-link.active {
+    border-bottom: 1px solid var(--text-color);
+}
+
+/* --- Section Hero (Haut) --- */
+.hero-section {
+    position: relative;
+    min-height: 80vh; /* Donnez-lui de la hauteur */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Important pour que le fond ne déborde pas */
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2; /* Supérieur au fond, donc passe au-dessus */
+    text-align: center;
+}
+
+.names {
+    font-family: var(--font-title);
+    font-size: 5.5rem;
+    font-weight: 400;
+    margin-bottom: 10px;
+}
+
+.separator {
+    width: 60%;
+    height: 1px;
+    background-color: rgba(74, 46, 27, 0.3);
+    margin: 0 auto 20px auto;
+}
+
+.subtitle {
+    font-style: italic;
+    font-size: 1.5rem;
+    margin-bottom: 50px;
+}
+
+/* --- Boutons --- */
+.cta-container {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    display: inline-block;
+    text-decoration: none;
+    color: var(--text-color);
+    background-color: var(--btn-bg);
+    padding: 14px 30px;
+    font-size: 1.1rem;
+    border: 2px solid var(--accent-color);
+    border-radius: 4px;
+    box-shadow: 0 4px 10px rgba(74, 46, 27, 0.15);
+    transition: all 0.3s ease;
+}
+
+.btn i {
+    margin-right: 8px;
+    color: var(--text-color);
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(74, 46, 27, 0.25);
+}
+
+/* --- Section 3 Colonnes (Bas) --- */
+.info-grid-section {
+    background-color: rgba(255, 255, 255, 0.2); /* Léger contraste pour le bas */
+    padding: 60px 10%;
+    border-top: 1px solid rgba(74, 46, 27, 0.1);
+}
+
+.info-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 200px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.info-card {
+    text-align: center;
+    /* position: relative; */
+}
+
+/* Séparateurs verticaux entre les colonnes */
+.info-card:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    right: -20px;
+    top: 20%;
+    height: 60%;
+    width: 1px;
+    background-color: rgba(74, 46, 27, 0.2);
+}
+
+.icon-wrapper {
+    font-size: 2rem;
+    margin-bottom: 15px;
+    color: var(--text-color);
+    opacity: 0.8;
+}
+
+.info-card h2 {
+    z-index: 2;
+    font-size: 1.6rem;
+    font-weight: 400;
+    margin-bottom: 10px;
+}
+
+.info-card p {
+      z-index: 2;
+    font-size: 1.1rem;
+}
+
+/* --- Footer --- */
+footer {
+    text-align: center;
+    padding: 40px 20px;
+    font-size: 1.1rem;
+    border-top: 1px solid rgba(74, 46, 27, 0.1);
+}
+
+.icon {
+    position: absolute;
+    top:10vh;
+    left: 20vh;
+    margin-top: 15px;
+    font-size: 1.2rem;
+}
+
+.icon2 {
+    position: absolute;
+    top:6vh;
+    left: 30vh;
+    margin-top: 15px;
+    font-size: 1.2rem;
+    transform: rotate(120deg);
+}
+
+.icon3 {
+    position: absolute;
+    top:20vh;
+    right: 30vh;
+    margin-top: 15px;
+    font-size: 1.2rem;
+    transform: rotate(220deg);
+}
+
+.icon4 {
+    position: absolute;
+    top:40vh;
+    right: 45vh;
+    margin-top: 15px;
+    font-size: 1.2rem;
+    transform: rotate(260deg);
+}
+/* Zone pour afficher vos dalles au milieu en arrière-plan */
+.tiles-background {
+    position: absolute;
+    bottom: 0;   /* On fixe le fond en bas */
+    left: 0;
+    width: 100%;
+    height: 50vh; /* Sa hauteur totale souhaitée */
+    
+    /* L'image de fond */
+    background-image: url('images/dalles2.png');
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    background-size: 75% 100%;
+
+    z-index: 1;    /* Au-dessus de rien, en dessous de tout */
+    pointer-events: none;
+    
+    /* LA CORRECTION : Masquage graduel (le haut est invisible, le bas est visible) */
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 100%);
+            mask-image: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 100%);
+    
+    /* Ajustement de la zone de masquage : on efface les premiers 100px */
+    -webkit-mask-position: 0 -100px;
+            mask-position: 0 -100px;
+    -webkit-mask-size: 100% calc(100% + 100px);
+            mask-size: 100% calc(100% + 100px);
+}
+
+/* --- Responsive (Pour les téléphones) --- */
+@media (max-width: 768px) {
+    header {
+        justify-content: center;
+        padding: 20px;
+    }
+    .names {
+        font-size: 4rem;
+    }
+    .info-container {
+        grid-template-columns: 1fr;
+        gap: 50px;
+    }
+    .info-card:not(:last-child)::after {
+        display: none; /* On enlève les barres verticales sur mobile */
+    }
+
+    .tiles-background {
+        height: 40vh; /* On réduit la hauteur du fond sur mobile */
+        background-size: 100% 100%; /* On ajuste la taille de l'image pour qu'elle remplisse bien le fond */
+    }
+}
+
+/* Style pour vos icônes personnalisées générées */
+.custom-icon {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+}
+
+/* La carte a une forme plus allongée */
+.custom-icon-card {
+    width: 50px;
+    height: 70px;
+    object-fit: contain;
+}
+
+
+
+/* On s'assure que le contenu reste au-dessus des dalles arrière-plan */
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+/* --- Page RSVP --- */
+.rsvp-section {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+}
+
+/* Conteneur principal qui superpose le texte sur l'image du livre */
+.rsvp-book-container {
+    position: relative;
+    width: 100%;
+    max-width: 650px; /* S'adapte à la forme verticale du livre généré */
+    aspect-ratio: 2 / 3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* L'image du livre prend toute la place en fond */
+.book-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    z-index: 1;
+    opacity: 0.3;
+}
+
+/* Le contenu textuel écrit "par-dessus" les pages */
+.book-content-overlay {
+    position: relative;
+    z-index: 2;
+    width: 75%; /* Laisse une marge pour voir les bords du livre */
+    height: 75%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+    text-align: center;
+}
+
+.rsvp-title {
+    font-family: var(--font-title);
+    font-size: 3rem;
+    font-weight: 400;
+    margin-bottom: 5px;
+    color: var(--text-color);
+}
+
+.rsvp-subtitle {
+    font-style: italic;
+    font-size: 1rem;
+    margin-bottom: 25px;
+    opacity: 0.8;
+}
+
+/* --- Styles des champs du Formulaire --- */
+.rsvp-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    text-align: left;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.form-group label {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.form-group input, 
+.form-group select, 
+.form-group textarea {
+    width: 100%;
+    padding: 10px 12px;
+    font-family: var(--font-text);
+    font-size: 0.95rem;
+    border: 1px solid rgba(74, 46, 27, 0.3);
+    border-radius: 4px;
+    background-color: rgba(253, 248, 244, 0.7); /* Fond semi-transparent pour voir le grain du papier dessous */
+    color: var(--text-color);
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus, 
+.form-group select:focus, 
+.form-group textarea:focus {
+    border-color: var(--accent-color);
+    background-color: rgba(253, 248, 244, 0.95);
+    box-shadow: 0 0 5px rgba(176, 125, 77, 0.2);
+}
+
+/* Bouton envoyer personnalisé "plume" */
+.btn-submit {
+    margin-top: 10px;
+    cursor: pointer;
+    width: 100%;
+    font-weight: 600;
+}
+
+/* --- Responsive RSVP (Mobile) --- */
+@media (max-width: 600px) {
+    .rsvp-book-container {
+        max-width: 100%;
+        aspect-ratio: auto; /* On casse la forme du livre sur mobile pour que le texte ne soit pas minuscule */
+        background-color: rgba(255, 255, 255, 0.5);
+        border-radius: 8px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        padding: 20px 10px;
+    }
+    
+    .book-background {
+        display: none; /* On cache le livre sur petit écran pour privilégier la lisibilité */
+    }
+    
+    .book-content-overlay {
+        width: 100%;
+        height: auto;
+        padding: 0;
+    }
+
+    .rsvp-title {
+        font-size: 2.5rem;
+    }
+}

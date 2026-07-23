@@ -136,20 +136,25 @@
     <!-- SCRIPT POUR L'EFFET ACCORDÉON -->
     <script>
         document.querySelectorAll('.faq-question').forEach(button => {
-            button.addEventListener('click', () => {
-                const faqItem = button.parentElement;
+        button.addEventListener('click', () => {
+            const faqItem = button.parentElement;
+            const faqAnswer = faqItem.querySelector('.faq-answer');
+            const isActive = faqItem.classList.contains('active');
 
-                // Ferme les autres questions ouvertes (optionnel, mais plus propre)
-                document.querySelectorAll('.faq-item').forEach(item => {
-                    if (item !== faqItem) {
-                        item.classList.remove('active');
-                    }
-                });
-
-                // Alterne l'état de la question cliquée
-                faqItem.classList.toggle('active');
+            // 1. Ferme toutes les autres questions
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.classList.remove('active');
+                item.querySelector('.faq-answer').style.maxHeight = null;
             });
+
+            // 2. Si la question n'était pas déjà ouverte, on l'ouvre
+            if (!isActive) {
+                faqItem.classList.add('active');
+                // On calcule dynamiquement la hauteur réelle du texte (adapte sur mobile !)
+                faqAnswer.style.maxHeight = faqAnswer.scrollHeight + "px";
+            }
         });
+    });
     </script>
     <script>
         // --- PARTIE 1 : Gérer l'arrivée douce (Fade In) ---
